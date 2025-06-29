@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>รายชื่อผู้ขับขี่มอเตอร์ไซต์</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            width: 90%;
+            max-width: 500px;
+            animation: fadeInScale 0.6s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2196F3, #21CBF3);
+            color: white;
+            padding: 20px 15px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            font-size: 0.8rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        .info-table {
+            padding: 20px;
+        }
+
+        .info-row {
+            display: flex;
+            background: #f5f5f5;
+            border-radius: 10px;
+            margin: 6px 10px;
+            padding: 10px;
+        }
+
+        .info-left {
+            flex: 2;
+        }
+
+        .info-right {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .subinfo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 4px 0;
+            white-space: nowrap;
+        }
+
+        .subinfo span:first-child {
+            color: #666;
+            font-weight: 500;
+            font-size: 0.8rem;
+        }
+
+        .subinfo span:last-child {
+            color: #333;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .feedback-section {
+            background: #f8f9fa;
+            padding: 15px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        #rider-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        #rider-list::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        #rider-list::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 4px;
+        }
+
+        #rider-list::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .feedback-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .feedback-btn {
+            padding: 10px 12px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .feedback-btn .icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            fill: white;
+        }
+
+
+        .feedback-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .feedback-btn:hover::before {
+            left: 100%;
+        }
+
+        .satisfaction-btn {
+            background: linear-gradient(45deg, #28a745, #20c997);
+        }
+
+        .satisfaction-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(40, 167, 69, 0.4);
+        }
+
+        .complaint-btn {
+            background: linear-gradient(45deg, #ffc107, #fd7e14);
+        }
+
+        .complaint-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 193, 7, 0.4);
+        }
+
+        @media (max-width: 600px) {
+            .header h1 {
+                font-size: 1rem;
+            }
+
+            .feedback-btn {
+                font-size: 0.85rem;
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 id="area-name">กำลังโหลด...</h1>
+            <p>เขตบริการ</p>
+        </div>
+
+        <div class="info-table">
+            <div id="rider-list">
+                <!-- ตรงนี้ JavaScript จะสร้าง div ของผู้ขับขี่แต่ละคนเข้ามา -->
+            </div>
+        </div>
+
+        <div class="feedback-section">
+            <div class="section-title">ให้คะแนนเขตบริการ</div>
+
+            <div class="feedback-buttons">
+                <a id="satisfaction-btn" target="_blank" class="feedback-btn satisfaction-btn">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12S6.48 22 12 22 22 17.52 22 12 17.52 2 12 2M12 20C7.59 20 4 16.41 4 12S7.59 4 12 4 20 7.59 20 12 16.41 20 12 20M13 9.94L14.06 11L15.12 9.94L16.18 11L17.24 9.94L15.12 7.82L13 9.94M8.88 9.94L9.94 11L11 9.94L8.88 7.82L6.76 9.94L7.82 11L8.88 9.94M12 17.5C14.33 17.5 16.31 16.04 17.11 14H6.89C7.69 16.04 9.67 17.5 12 17.5Z" />
+                    </svg>
+                    ประเมินความพึงพอใจ
+                </a>
+                <a id="complaint-btn" target="_blank" class="feedback-btn complaint-btn">
+                    <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M13 14H11V9H13M13 18H11V16H13M1 21H23L12 2L1 21Z" />
+                    </svg>
+                    ร้องเรียน
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // 1. ดึงชื่อเขตจาก URL
+        const areaParam = new URLSearchParams(window.location.search).get('area') || 'เขตตัวอย่าง';
+        document.getElementById('area-name').innerText = areaParam;
+
+        // 2. fetch ข้อมูลจริงจาก Apps Script ของเรา
+        fetch('https://script.google.com/macros/s/AKfycbwQhF65Unc2P_2ZG2JqK_766YEBh2A0ofxjHBTw16pN08SxUNNqQECYyI5O61x698YTzg/exec?area='
+            + encodeURIComponent(areaParam))
+            .then(res => res.json())
+            .then(riders => {
+                const list = document.getElementById('rider-list');
+                list.innerHTML = '';
+                riders.forEach(r => {
+                    const row = document.createElement('div');
+                    row.className = 'info-row';
+                    row.innerHTML = `
+            <div class="info-left">
+              <div class="name">${r.name}</div>
+              <div class="subinfo"><span>เลขประจำตัว</span><span>${r.id}</span></div>
+              <div class="subinfo"><span>หมายเลขเสื้อ</span><span>${r.shirt_number}</span></div>
+            </div>
+            <div class="info-right">
+              <div class="subinfo"><span>ทะเบียนรถ</span><span>${r.plate}</span></div>
+            </div>`;
+                    list.appendChild(row);
+                });
+            })
+            .catch(err => console.error('Fetch error:', err));
+
+        // 3. เซ็ตลิงก์ให้ปุ่มไปยัง Google Form พร้อมระบุเขต
+        const SAT_FORM_ID = 'YOUR_SAT_FORM_ID';      // ใส่ Form ID ของฟอร์ม "ประเมิน"
+        const COMP_FORM_ID = 'YOUR_COMP_FORM_ID';    // ใส่ Form ID ของฟอร์ม "ร้องเรียน"
+        const ENTRY_FIELD = 'entry.123456';         // ใส่ entry.<รหัสช่อง> ที่รับค่าเขต
+
+        document.getElementById('satisfaction-btn').href =
+            `https://docs.google.com/forms/d/${SAT_FORM_ID}/viewform?${ENTRY_FIELD}=${encodeURIComponent(areaParam)}`;
+
+        document.getElementById('complaint-btn').href =
+            `https://docs.google.com/forms/d/${COMP_FORM_ID}/viewform?${ENTRY_FIELD}=${encodeURIComponent(areaParam)}`;
+    </script>
+</body>
+
+</html>

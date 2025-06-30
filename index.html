@@ -254,7 +254,7 @@
 
     <script>
         const areaParam = new URLSearchParams(window.location.search).get('area') || 'เขตตัวอย่าง';
-        document.getElementById('area-name').innerHTML = `Smart WIN`;
+        document.getElementById('app-title').innerHTML = `Smart WIN`;
         document.querySelector('.header p').innerHTML = `ที่ตั้งวินพื้นที่เขตคลองสามวา<br>วิน ${areaParam}`;
 
         fetch('https://script.google.com/macros/s/AKfycbwQhF65Unc2P_2ZG2JqK_766YEBh2A0ofxjHBTw16pN08SxUNNqQECYyI5O61x698YTzg/exec?area='

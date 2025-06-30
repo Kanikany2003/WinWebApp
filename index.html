@@ -252,13 +252,13 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1 id="app-title">SMART WIN</h1>
+            <h1 id="app-title">Smart WIN</h1>
             <p id="area-detail">กำลังโหลด...</p>
         </div>
 
         <div class="info-table">
             <div id="rider-list">
-
+                <!-- ตรงนี้ JavaScript จะสร้าง div ของผู้ขับขี่แต่ละคนเข้ามา -->
             </div>
         </div>
 
@@ -283,10 +283,9 @@
         </div>
     </div>
 
-
     <script>
         const areaParam = new URLSearchParams(window.location.search).get('area') || 'เขตตัวอย่าง';
-        document.getElementById('app-title').innerHTML = `SMART WIN`;
+        document.getElementById('app-title').innerHTML = `Smart WIN`;
         document.querySelector('.header p').innerHTML = `ที่ตั้งวินพื้นที่เขตคลองสามวา<br>วิน ${areaParam}`;
 
         fetch('https://script.google.com/macros/s/AKfycbwQhF65Unc2P_2ZG2JqK_766YEBh2A0ofxjHBTw16pN08SxUNNqQECYyI5O61x698YTzg/exec?area='
@@ -299,22 +298,31 @@
                     const row = document.createElement('div');
                     row.className = 'info-row';
                     row.innerHTML = `
-            <div class="info-left">
-              <div class="name">${r.name}</div>
-              <div class="subinfo"><span>เลขประจำตัว</span><span>${r.id}</span></div>
-              <div class="subinfo"><span>หมายเลขเสื้อ</span><span>${r.shirt_number}</span></div>
-            </div>
-            <div class="info-right">
-              <div class="subinfo"><span>ทะเบียนรถ</span><span>${r.plate}</span></div>
-            </div>`;
+                        <div class="name">${r.name}</div>
+                        <div class="rider-details">
+                            <div class="detail-item">
+                                <span class="detail-label">เลขประจำตัว</span>
+                                <span class="detail-value">${r.id}</span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">หมายเลขเสื้อ</span>
+                                <span class="detail-value">${r.shirt_number}</span>
+                            </div>
+                            <div class="detail-item plate-number">
+                                <span class="detail-label">ทะเบียนรถ</span>
+                                <span class="detail-value">${r.plate}</span>
+                            </div>
+                        </div>
+                    `;
                     list.appendChild(row);
                 });
             })
             .catch(err => console.error('Fetch error:', err));
 
-        const SAT_FORM_ID = 'YOUR_SAT_FORM_ID';
-        const COMP_FORM_ID = 'YOUR_COMP_FORM_ID';
-        const ENTRY_FIELD = 'entry.123456';
+        // 3. เซ็ตลิงก์ให้ปุ่มไปยัง Google Form พร้อมระบุเขต
+        const SAT_FORM_ID = 'YOUR_SAT_FORM_ID';      // ใส่ Form ID ของฟอร์ม "ประเมิน"
+        const COMP_FORM_ID = 'YOUR_COMP_FORM_ID';    // ใส่ Form ID ของฟอร์ม "ร้องเรียน"
+        const ENTRY_FIELD = 'entry.123456';         // ใส่ entry.<รหัสช่อง> ที่รับค่าเขต
 
         document.getElementById('satisfaction-btn').href =
             `https://docs.google.com/forms/d/${SAT_FORM_ID}/viewform?${ENTRY_FIELD}=${encodeURIComponent(areaParam)}`;

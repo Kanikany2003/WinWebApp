@@ -220,8 +220,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1 id="area-name">กำลังโหลด...</h1>
-            <p>เขตบริการ</p>
+            <h1 id="app-title">Smart WIN</h1>
+            <p id="area-detail">กำลังโหลด...</p>
         </div>
 
         <div class="info-table">
@@ -253,11 +253,10 @@
 
 
     <script>
-        // 1. ดึงชื่อเขตจาก URL
         const areaParam = new URLSearchParams(window.location.search).get('area') || 'เขตตัวอย่าง';
-        document.getElementById('area-name').innerText = areaParam;
+        document.getElementById('area-name').innerHTML = `Smart WIN`;
+        document.querySelector('.header p').innerHTML = `ที่ตั้งวินพื้นที่เขตคลองสามวา<br>วิน ${areaParam}`;
 
-        // 2. fetch ข้อมูลจริงจาก Apps Script ของเรา
         fetch('https://script.google.com/macros/s/AKfycbwQhF65Unc2P_2ZG2JqK_766YEBh2A0ofxjHBTw16pN08SxUNNqQECYyI5O61x698YTzg/exec?area='
             + encodeURIComponent(areaParam))
             .then(res => res.json())

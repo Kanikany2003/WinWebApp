@@ -283,7 +283,7 @@
 
     <script>
         const areaParam = new URLSearchParams(window.location.search).get('area') || 'เขตตัวอย่าง';
-        document.getElementById('app-title').innerHTML = `SMART WIN`;
+        document.getElementById('app-title').innerHTML = `Smart WIN`;
         document.querySelector('.header p').innerHTML = `ที่ตั้งวินพื้นที่เขตคลองสามวา<br>วิน ${areaParam}`;
 
         fetch('https://script.google.com/macros/s/AKfycbwQhF65Unc2P_2ZG2JqK_766YEBh2A0ofxjHBTw16pN08SxUNNqQECYyI5O61x698YTzg/exec?area='
@@ -318,15 +318,16 @@
             .catch(err => console.error('Fetch error:', err));
 
         // 3. เซ็ตลิงก์ให้ปุ่มไปยัง Google Form พร้อมระบุเขต
-        const SAT_FORM_ID = 'YOUR_SAT_FORM_ID';      // ใส่ Form ID ของฟอร์ม "ประเมิน"
-        const COMP_FORM_ID = 'YOUR_COMP_FORM_ID';    // ใส่ Form ID ของฟอร์ม "ร้องเรียน"
-        const ENTRY_FIELD = 'entry.123456';         // ใส่ entry.<รหัสช่อง> ที่รับค่าเขต
+        const ENTRY_FIELD = 'entry.2005620554'; // ปรับให้ตรงกับ entry ของฟอร์มจริง
 
-        document.getElementById('satisfaction-btn').href =
-            `https://docs.google.com/forms/d/${SAT_FORM_ID}/viewform?${ENTRY_FIELD}=${encodeURIComponent(areaParam)}`;
+        const SAT_FORM_ID = '1FAIpQLScu_SXWPO9AzMpR47L055eoHCbjOhqg_IQrxp0YV9xvAlP-wA';
+        const COMP_FORM_ID = '1FAIpQLSdCkKg2eqjx5lySE-5gwLh2D63shdCY0hA-Mgl_iIuefovyDA';
 
-        document.getElementById('complaint-btn').href =
-            `https://docs.google.com/forms/d/${COMP_FORM_ID}/viewform?${ENTRY_FIELD}=${encodeURIComponent(areaParam)}`;
+        const baseSat = `https://docs.google.com/forms/d/e/${SAT_FORM_ID}/viewform?usp=pp_url&${ENTRY_FIELD}=${encodeURIComponent(areaParam)}`;
+        document.getElementById('satisfaction-btn').href = baseSat;
+
+        const baseComp = `https://docs.google.com/forms/d/e/${COMP_FORM_ID}/viewform?usp=pp_url&${ENTRY_FIELD}=${encodeURIComponent(areaParam)}`;
+        document.getElementById('complaint-btn').href = baseComp;
     </script>
 </body>
 

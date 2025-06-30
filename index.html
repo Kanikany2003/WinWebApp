@@ -95,27 +95,29 @@
 
         .detail-item {
             display: flex;
-            flex-direction: column;
-            gap: 2px;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 0;
         }
 
         .detail-label {
             color: #666;
             font-weight: 500;
             font-size: 0.85rem;
+            flex-shrink: 0;
         }
 
         .detail-value {
             color: #333;
             font-weight: 600;
             font-size: 0.95rem;
+            text-align: right;
         }
 
         .plate-number {
             grid-column: span 2;
-            text-align: center;
             background: #e3f2fd;
-            padding: 8px;
+            padding: 8px 12px;
             border-radius: 8px;
             margin-top: 5px;
         }

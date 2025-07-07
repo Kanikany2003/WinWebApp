@@ -95,8 +95,8 @@
 
         .detail-item {
             display: flex;
-            flex-direction: column;
-            gap: 4px;
+            gap: 6px;
+            align-items: center;
         }
 
         .detail-label {
@@ -301,7 +301,10 @@
                                 <span class="detail-label">หมายเลขเสื้อ</span>
                                 <span class="detail-value">${r.shirt_number}</span>
                             </div>
-                            <div class="name">${r.name}</div>
+                            <div class="detail-item">
+                                <span class="detail-label">ชื่อ</span>
+                                <span class="detail-value">${r.name}</span>
+                            </div>
                             <div class="detail-item plate-number">
                                 <span class="detail-label">ทะเบียนรถ</span>
                                 <span class="detail-value">${r.plate}</span>

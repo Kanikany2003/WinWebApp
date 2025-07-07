@@ -95,8 +95,10 @@
 
         .detail-item {
             display: flex;
+            flex-direction: row;
             gap: 6px;
             align-items: center;
+            margin-bottom: 4px;
         }
 
         .detail-label {
@@ -305,10 +307,10 @@
                                 <span class="detail-label">ชื่อ</span>
                                 <span class="detail-value">${r.name}</span>
                             </div>
-                            <div class="detail-item plate-number">
-                                <span class="detail-label">ทะเบียนรถ</span>
-                                <span class="detail-value">${r.plate}</span>
-                            </div>
+                        </div>
+                        <div class="detail-item plate-number">
+                            <span class="detail-label">ทะเบียนรถ</span>
+                            <span class="detail-value">${r.plate}</span>
                         </div>
                     `;
                     list.appendChild(row);

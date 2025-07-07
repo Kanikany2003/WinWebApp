@@ -283,7 +283,7 @@
 
     <script>
         const areaParam = new URLSearchParams(window.location.search).get('area') || 'เขตตัวอย่าง';
-        document.getElementById('app-title').innerHTML = `SMART WIN`;
+        document.getElementById('app-title').innerHTML = `Smart WIN`;
         document.querySelector('.header p').innerHTML = `ที่ตั้งวินพื้นที่เขตคลองสามวา<br>วิน ${areaParam}`;
 
         fetch('https://script.google.com/macros/s/AKfycbwQhF65Unc2P_2ZG2JqK_766YEBh2A0ofxjHBTw16pN08SxUNNqQECYyI5O61x698YTzg/exec?area='
@@ -296,16 +296,12 @@
                     const row = document.createElement('div');
                     row.className = 'info-row';
                     row.innerHTML = `
-                        <div class="name">${r.name}</div>
                         <div class="rider-details">
-                            <div class="detail-item">
-                                <span class="detail-label">เลขประจำตัว</span>
-                                <span class="detail-value">${r.id}</span>
-                            </div>
                             <div class="detail-item">
                                 <span class="detail-label">หมายเลขเสื้อ</span>
                                 <span class="detail-value">${r.shirt_number}</span>
                             </div>
+                            <div class="name">${r.name}</div>
                             <div class="detail-item plate-number">
                                 <span class="detail-label">ทะเบียนรถ</span>
                                 <span class="detail-value">${r.plate}</span>
@@ -317,7 +313,8 @@
             })
             .catch(err => console.error('Fetch error:', err));
 
-        const ENTRY_FIELD = 'entry.2005620554'; 
+        // 3. เซ็ตลิงก์ให้ปุ่มไปยัง Google Form พร้อมระบุเขต
+        const ENTRY_FIELD = 'entry.2005620554'; // ปรับให้ตรงกับ entry ของฟอร์มจริง
 
         const SAT_FORM_ID = '1FAIpQLScu_SXWPO9AzMpR47L055eoHCbjOhqg_IQrxp0YV9xvAlP-wA';
         const COMP_FORM_ID = '1FAIpQLSdCkKg2eqjx5lySE-5gwLh2D63shdCY0hA-Mgl_iIuefovyDA';
